@@ -10,8 +10,8 @@
 
         public int FkBloodBank { get; set; }
 
-        public virtual BloodBank? BloodBank { get; set; }
+        public virtual BloodBank BloodBank { get; set; }
 
-        public virtual Donor? Donor { get; set; }
+        public virtual Donor Donor { get; set; }
     }
 }

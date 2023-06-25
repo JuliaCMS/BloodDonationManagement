@@ -12,6 +12,7 @@ namespace BloodDonationManagement.DataAcessLayer
         public DbSet<Donor> Donors { get; set; }
         public DbSet<DonationRequisition> Requisitions { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
         public DBContext()
         {

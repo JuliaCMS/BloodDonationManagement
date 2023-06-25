@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        public virtual BloodType? BloodType { get; set; }
+        public virtual BloodType BloodType { get; set; }
 
         public int Quantity { get; set; }
 
