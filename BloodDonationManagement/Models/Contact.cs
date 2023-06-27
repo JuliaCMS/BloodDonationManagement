@@ -8,6 +8,10 @@ public class Contact
 
     public int? RegisteredId { get; set; }
 
+    public string Email { get; set; }
+
+    public string Telephone { get; set; }
+
     public string UserType { get; set; }
 
     public string Subject { get; set; }
