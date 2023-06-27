@@ -38,20 +38,17 @@ namespace BloodDonationManagement.DataAcessLayer
             modelBuilder.Entity<BloodBank>()
                 .HasOne(b => b.BloodInventory)
                 .WithOne(i => i.BloodBank)
-                .HasForeignKey<BloodInventory>(i => i.FkBloodBank)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey<BloodInventory>(i => i.FkBloodBank);
 
             modelBuilder.Entity<BloodBank>()
                 .HasMany(b => b.Requisitions)
                 .WithOne(r => r.BloodBank)
-                .HasForeignKey(r => r.FkBloodBank)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(r => r.FkBloodBank);
 
             modelBuilder.Entity<DonationRequisition>()
                 .HasOne(r => r.Donor)
                 .WithMany(d => d.Requisitions)
-                .HasForeignKey(r => r.FkDonor)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(r => r.FkDonor);
         }
     }
 }

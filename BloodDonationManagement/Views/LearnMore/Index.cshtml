@@ -1,6 +1,122 @@
 ﻿@{
-    ViewData["Title"] = "About Us";
+    ViewData["Title"] = "Learn More";
 }
-<h2>Learn more</h2>
 
-<p>Hello from Learn more viewcontroller!</p>
+<body>
+<header class="bg-light py-5">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-dark mb-2">Blood Donation</h1>
+                    <p class="lead fw-normal text-dark-50 mb-4">
+                        Donation is an altruistic and solidarity act, blood donation is an act that saves lives. This is a gesture of love that can generate many smiles.
+
+                        Blood consumption is daily and continuous, as it is used in various situations: in chronic anemias, emergency surgeries, accidents that cause bleeding, complications from dengue fever, yellow fever, cancer treatment and other serious diseases. It should be noted that there is no substitute for blood and its availability is essential in various situations.
+
+                        Now that you understand the importance of this act of solidarity, do your part. Register on our platform to be captured and donate blood regularly. Lives depend on you!
+                    </p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Start scrolling</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+                <img class="img-fluid rounded-3 my-5" src="~/assets/img/learnmore/mask_image_2.jpg.img.jpeg" alt="..." />
+                </div>
+        </div>
+    </div>
+</header>
+<!-- Features section-->
+<section class="py-5" id="features">
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0 text-center">A single donation can help save four lives.<br />
+                    See the four blood components used for transfusion and their main uses:
+                </h2>
+            </div>
+            <div class="col-lg-8">
+                <div class="row gx-5 row-cols-1 row-cols-md-2">
+                    <div class="col mb-5 h-100">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                        <h2 class="h5 text-danger">Red Blood Cell Concetrate</h2>
+                        <p class="mb-0">Anemia where oxygen transport is compromised.</p>
+                    </div>
+                    <div class="col mb-5 h-100">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                        <h2 class="h5 text-danger">Platelet Concentrate</h2>
+                        <p class="mb-0">Severe bleeding due to platelet deficiency.</p>
+                    </div>
+                    <div class="col mb-5 mb-md-0 h-100">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                        <h2 class="h5 text-danger">Fresh Frozen Plasma</h2>
+                        <p class="mb-0">Patients with coagulation factor deficiencies or for the production of plasma derivatives.</p>
+                    </div>
+                    <div class="col h-100">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                        <h2 class="h5 text-danger">Cryoprecipitate</h2>
+                        <p class="mb-0">Hypofibrinogenemia, dysfibrinogenemia, Factor XIII deficiency.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Sidebar -->
+    <section class="d-flex border-top vh-100" id="wrapper">
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3"
+                   href="#eligibility-requirements">Eligibility Requirements</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" 
+                    href="#faq">F.A.Q.</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3"
+                   href="#donation-process">Donation Process Overview</a>
+            </div>
+        </div>
+        <!-- Page content wrapper -->
+        <div id="page-content-wrapper" class="flex-grow-1">
+            <!-- Page content -->
+            <div class="container-fluid">
+                <div id="eligibility-requirements">
+                    <h1 class="mt-4">Eligibility Requirements</h1>
+                    <p>funciona demonio</p>
+                </div>
+                <div id="faq" style="display: none;">
+                    <h1 class="mt-4">F.A.Q.</h1>
+                    <p>ESTOY LOCO LALALALA</p>
+                </div>
+                <div id="donation-process" style="display: none;">
+                    <h1 class="mt-4">Donation Process Overview</h1>
+                    <p>vou me matar 23h99</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // get sidebar links
+            const links = document.querySelectorAll("#sidebar-wrapper a");
+            // Add click event to each link
+            links.forEach(function (link) {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    // Get link target (content related ID)
+                    const targetId = this.getAttribute("href").substring(1);
+                    // Hide content
+                    const contents = document.querySelectorAll("#page-content-wrapper > .container-fluid > div");
+                    contents.forEach(function (content) {
+                        content.style.display = "none";
+                    });
+                    // Show related target content
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.style.display = "block";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
