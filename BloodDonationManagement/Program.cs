@@ -1,3 +1,5 @@
+using BloodDonationManagement.DataAcessLayer;
+
 namespace BloodDonationManagement
 {
     public class Program
@@ -8,6 +10,8 @@ namespace BloodDonationManagement
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<DBContext>();
 
             var app = builder.Build();
 

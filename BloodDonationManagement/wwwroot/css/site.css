@@ -66,8 +66,21 @@ body {
     z-index: 1500;
 }
 
-.background-image {
-    background-image: url('~/assets/img/home/header.jpg');
+.homeHeaderBackground {
+    background-image: url(../assets/img/home/header.jpg);
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    color: white;
+    border-radius: 10px;
+}
+
+.siteDescription {
+    font-family: Courier New, Courier, monospace;
+    font-size:large
+}
+
+.homeDonationInfo {
+    background-color:#d5d8ec;
+    border-radius: 10px;
 }

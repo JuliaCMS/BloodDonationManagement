@@ -1,62 +1,68 @@
 ﻿@model BloodDonationManagement.Models.Donor
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Register</h1>
+<h1>Edit</h1>
 
+<h4>Donor</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="FullName" class="control-label">Full Name</label>
+                <label asp-for="FullName" class="control-label"></label>
                 <input asp-for="FullName" class="form-control" />
                 <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Cpf" class="control-label">CPF</label>
+                <label asp-for="Cpf" class="control-label"></label>
                 <input asp-for="Cpf" class="form-control" />
                 <span asp-validation-for="Cpf" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DateOfBirth" class="control-label">Date Of Birth</label>
+                <label asp-for="DateOfBirth" class="control-label"></label>
                 <input asp-for="DateOfBirth" class="form-control" />
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label">E-mail</label>
+                <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Telephone1" class="control-label">Telephone 1</label>
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telephone1" class="control-label"></label>
                 <input asp-for="Telephone1" class="form-control" />
                 <span asp-validation-for="Telephone1" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Telephone2" class="control-label">Telephone 2</label>
+                <label asp-for="Telephone2" class="control-label"></label>
                 <input asp-for="Telephone2" class="form-control" />
                 <span asp-validation-for="Telephone2" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastDonation" class="control-label">Last Donation</label>
+                <label asp-for="LastDonation" class="control-label"></label>
                 <input asp-for="LastDonation" class="form-control" />
                 <span asp-validation-for="LastDonation" class="text-danger"></span>
             </div>
-            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-@*<div>
+<div>
     <a asp-action="Index">Back to List</a>
-</div>*@
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
