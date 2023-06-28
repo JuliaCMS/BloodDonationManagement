@@ -20,7 +20,9 @@ namespace BloodDonationManagement.Models
 
         public string Telephone { get; set; }
 
-        public string BloodType { get; set; }
+        [ForeignKey("BloodType")]
+        public int BloodTypeId { get; set; }
+        public virtual BloodType BloodType { get; set; }
 
         public DateTime? LastDonation { get; set; }
 

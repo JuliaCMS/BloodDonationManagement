@@ -8,10 +8,6 @@ namespace BloodDonationManagement.Models
         [Key]
         public int Id { get; set; }
 
-        public string ComponentType { get; set; }
-
-        public string BloodType { get; set; }
-
-        public int Quantity { get; set; }
+        public virtual ICollection<BloodType> Components { get; set; }
     }
 }

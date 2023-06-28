@@ -12,6 +12,7 @@ namespace BloodDonationManagement.DataAcessLayer
         public DbSet<DonationRequisition> Requisitions { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<BloodType> BloodTypes { get; set; }
 
         public DBContext()
         {
@@ -60,6 +61,11 @@ namespace BloodDonationManagement.DataAcessLayer
                 .WithMany(d => d.Requisitions)
                 .HasForeignKey(r => r.DonorId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<BloodType>()
+                .HasOne(c => c.BloodInventory)
+                .WithMany(i => i.Components)
+                .HasForeignKey(c => c.BloodInventoryId);
         }
     }
 }
