@@ -7,7 +7,6 @@ namespace BloodDonationManagement.DataAcessLayer
     {
         public DbSet<Admin> Admins { get; set; }
         public DbSet<BloodBank> BloodBanks { get; set; }
-        public DbSet<BloodType> BloodTypes { get; set; }
         public DbSet<BloodInventory> BloodInventories { get; set; }
         public DbSet<Donor> Donors { get; set; }
         public DbSet<DonationRequisition> Requisitions { get; set; }
@@ -36,19 +35,31 @@ namespace BloodDonationManagement.DataAcessLayer
             //Configures entity relationships and properties
 
             modelBuilder.Entity<BloodBank>()
+            .HasOne(b => b.Address)
+            .WithOne()
+            .HasForeignKey<BloodBank>(b => b.AddressId);
+
+            modelBuilder.Entity<Donor>()
+                .HasOne(d => d.Address)
+                .WithOne()
+                .HasForeignKey<Donor>(d => d.AddressId);
+
+            modelBuilder.Entity<BloodBank>()
                 .HasOne(b => b.BloodInventory)
-                .WithOne(i => i.BloodBank)
-                .HasForeignKey<BloodInventory>(i => i.FkBloodBank);
+                .WithOne()
+                .HasForeignKey<BloodBank>(b => b.BloodInventoryId);
 
             modelBuilder.Entity<BloodBank>()
                 .HasMany(b => b.Requisitions)
                 .WithOne(r => r.BloodBank)
-                .HasForeignKey(r => r.FkBloodBank);
+                .HasForeignKey(r => r.BloodBankId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<DonationRequisition>()
                 .HasOne(r => r.Donor)
                 .WithMany(d => d.Requisitions)
-                .HasForeignKey(r => r.FkDonor);
+                .HasForeignKey(r => r.DonorId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

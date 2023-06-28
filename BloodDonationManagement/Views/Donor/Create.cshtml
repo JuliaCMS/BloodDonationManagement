@@ -17,11 +17,6 @@
                 <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Cpf" class="control-label">CPF</label>
-                <input asp-for="Cpf" class="form-control" />
-                <span asp-validation-for="Cpf" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="DateOfBirth" class="control-label">Date Of Birth</label>
                 <input type="date" asp-for="DateOfBirth" class="form-control" />
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
@@ -32,21 +27,15 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Telephone1" class="control-label">Telephone 1</label>
-                <input asp-for="Telephone1" class="form-control" />
-                <span asp-validation-for="Telephone1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telephone2" class="control-label">Telephone 2</label>
-                <input asp-for="Telephone2" class="form-control" />
-                <span asp-validation-for="Telephone2" class="text-danger"></span>
+                <label asp-for="Telephone" class="control-label">Telephone 1</label>
+                <input asp-for="Telephone" class="form-control" />
+                <span asp-validation-for="Telephone" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="LastDonation" class="control-label">Last Donation</label>
                 <input type="date" asp-for="LastDonation" class="form-control" />
                 <span asp-validation-for="LastDonation" class="text-danger"></span>
             </div>
-            <br />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -54,10 +43,9 @@
     </div>
 </div>
 
-@*<div>
+<div>
     <a asp-action="Index">Back to List</a>
-</div>*@
-
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

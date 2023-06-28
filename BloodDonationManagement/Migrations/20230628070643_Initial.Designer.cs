@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BloodDonationManagement.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20230627024501_Initial")]
+    [Migration("20230628070643_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -36,20 +36,9 @@ namespace BloodDonationManagement.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Cep")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Neighborhood")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Number")
-                        .HasColumnType("int");
 
                     b.Property<string>("State")
                         .IsRequired()
@@ -101,7 +90,10 @@ namespace BloodDonationManagement.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AdressId")
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BloodInventoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -126,7 +118,11 @@ namespace BloodDonationManagement.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdressId");
+                    b.HasIndex("AddressId")
+                        .IsUnique();
+
+                    b.HasIndex("BloodInventoryId")
+                        .IsUnique();
 
                     b.ToTable("BloodBanks");
                 });
@@ -139,45 +135,20 @@ namespace BloodDonationManagement.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BloodTypeId")
-                        .HasColumnType("int");
+                    b.Property<string>("BloodType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FkBloodBank")
-                        .HasColumnType("int");
+                    b.Property<string>("ComponentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BloodTypeId");
-
-                    b.HasIndex("FkBloodBank")
-                        .IsUnique();
-
                     b.ToTable("BloodInventories");
-                });
-
-            modelBuilder.Entity("BloodDonationManagement.Models.BloodType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ABO")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Component")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Rh")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BloodTypes");
                 });
 
             modelBuilder.Entity("BloodDonationManagement.Models.Contact", b =>
@@ -187,6 +158,10 @@ namespace BloodDonationManagement.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Message")
                         .IsRequired()
@@ -200,6 +175,10 @@ namespace BloodDonationManagement.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telephone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -220,10 +199,10 @@ namespace BloodDonationManagement.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("FkBloodBank")
+                    b.Property<int>("BloodBankId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FkDonor")
+                    b.Property<int>("DonorId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("RequisitionDate")
@@ -231,9 +210,9 @@ namespace BloodDonationManagement.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FkBloodBank");
+                    b.HasIndex("BloodBankId");
 
-                    b.HasIndex("FkDonor");
+                    b.HasIndex("DonorId");
 
                     b.ToTable("Requisitions");
                 });
@@ -246,13 +225,10 @@ namespace BloodDonationManagement.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AdressId")
+                    b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BloodTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Cpf")
+                    b.Property<string>("BloodType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -270,68 +246,49 @@ namespace BloodDonationManagement.Migrations
                     b.Property<DateTime?>("LastDonation")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("Telephone")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telephone1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telephone2")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdressId");
-
-                    b.HasIndex("BloodTypeId");
+                    b.HasIndex("AddressId")
+                        .IsUnique();
 
                     b.ToTable("Donors");
                 });
 
             modelBuilder.Entity("BloodDonationManagement.Models.BloodBank", b =>
                 {
-                    b.HasOne("BloodDonationManagement.Models.Address", "Adress")
-                        .WithMany()
-                        .HasForeignKey("AdressId")
+                    b.HasOne("BloodDonationManagement.Models.Address", "Address")
+                        .WithOne()
+                        .HasForeignKey("BloodDonationManagement.Models.BloodBank", "AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Adress");
-                });
-
-            modelBuilder.Entity("BloodDonationManagement.Models.BloodInventory", b =>
-                {
-                    b.HasOne("BloodDonationManagement.Models.BloodType", "BloodType")
-                        .WithMany()
-                        .HasForeignKey("BloodTypeId")
+                    b.HasOne("BloodDonationManagement.Models.BloodInventory", "BloodInventory")
+                        .WithOne()
+                        .HasForeignKey("BloodDonationManagement.Models.BloodBank", "BloodInventoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BloodDonationManagement.Models.BloodBank", "BloodBank")
-                        .WithOne("BloodInventory")
-                        .HasForeignKey("BloodDonationManagement.Models.BloodInventory", "FkBloodBank")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Address");
 
-                    b.Navigation("BloodBank");
-
-                    b.Navigation("BloodType");
+                    b.Navigation("BloodInventory");
                 });
 
             modelBuilder.Entity("BloodDonationManagement.Models.DonationRequisition", b =>
                 {
                     b.HasOne("BloodDonationManagement.Models.BloodBank", "BloodBank")
                         .WithMany("Requisitions")
-                        .HasForeignKey("FkBloodBank")
+                        .HasForeignKey("BloodBankId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BloodDonationManagement.Models.Donor", "Donor")
                         .WithMany("Requisitions")
-                        .HasForeignKey("FkDonor")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("DonorId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("BloodBank");
@@ -341,27 +298,17 @@ namespace BloodDonationManagement.Migrations
 
             modelBuilder.Entity("BloodDonationManagement.Models.Donor", b =>
                 {
-                    b.HasOne("BloodDonationManagement.Models.Address", "Adress")
-                        .WithMany()
-                        .HasForeignKey("AdressId")
+                    b.HasOne("BloodDonationManagement.Models.Address", "Address")
+                        .WithOne()
+                        .HasForeignKey("BloodDonationManagement.Models.Donor", "AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BloodDonationManagement.Models.BloodType", "BloodType")
-                        .WithMany()
-                        .HasForeignKey("BloodTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Adress");
-
-                    b.Navigation("BloodType");
+                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("BloodDonationManagement.Models.BloodBank", b =>
                 {
-                    b.Navigation("BloodInventory");
-
                     b.Navigation("Requisitions");
                 });
 

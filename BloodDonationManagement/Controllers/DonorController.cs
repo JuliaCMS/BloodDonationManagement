@@ -1,30 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BloodDonationManagement.DataAcessLayer;
+using BloodDonationManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BloodDonationManagement.DataAcessLayer;
-using BloodDonationManagement.Models;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BloodDonationManagement.Controllers
 {
-    public class DonorController : Controller
-    {
-        private readonly DBContext _context;
+	public class DonorController : Controller
+	{
+		private readonly DBContext _context;
 
-        public DonorController(DBContext context)
-        {
-            _context = context;
-        }
+		public DonorController(DBContext context)
+		{
+			_context = context;
+		}
+
 
         // GET: Donor
         public async Task<IActionResult> Index()
         {
-              return _context.Donors != null ? 
-                          View(await _context.Donors.ToListAsync()) :
-                          Problem("Entity set 'DBContext.Donors'  is null.");
+            return _context.Donors != null ?
+                        View(await _context.Donors.ToListAsync()) :
+                        Problem("Entity set 'DBContext.Donors'  is null.");
         }
 
         // GET: Donor/Details/5
@@ -51,6 +51,7 @@ namespace BloodDonationManagement.Controllers
             return View();
         }
 
+
         // POST: Donor/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -66,6 +67,7 @@ namespace BloodDonationManagement.Controllers
             }
             return View(donor);
         }
+
 
         // GET: Donor/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -150,14 +152,14 @@ namespace BloodDonationManagement.Controllers
             {
                 _context.Donors.Remove(donor);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool DonorExists(int id)
         {
-          return (_context.Donors?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Donors?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
