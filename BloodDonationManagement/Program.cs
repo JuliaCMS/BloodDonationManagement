@@ -1,29 +1,43 @@
 using BloodDonationManagement.DataAcessLayer;
 using BloodDonationManagement.Interfaces;
+using BloodDonationManagement.Models;
 using BloodDonationManagement.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 
 namespace BloodDonationManagement
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+                // Interfaces Injection
             builder.Services.AddScoped<IDonorRepository, DonorRepository>();
             builder.Services.AddScoped<IBloodBankRepository, BloodBankRepository>();
 
+                // DbContext Injection
             builder.Services.AddDbContext<DBContext>();
+
+                // Identity Injection and Authentication
+            builder.Services.AddIdentity<AppUser, IdentityRole>()
+                .AddEntityFrameworkStores<DBContext>();
+            builder.Services.AddMemoryCache();
+            builder.Services.AddSession();
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
 
             var app = builder.Build();
 
+                // Data Seed
             if (args.Length == 1 && args[0].ToLower() == "seeddata")
             {
-                //await Seed.SeedUsersAndRolesAsync(app);
-                Seed.SeedData(app);
+				await Seed.SeedUsersAndRolesAsync(app);
+                //Seed.SeedData(app);
             }
 
 
