@@ -1,59 +1,67 @@
 ﻿@model IEnumerable<BloodDonationManagement.Models.Donor>
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Registered blood donors";
 }
 
-<h1>Index</h1>
+<div class="container mt-4">
+	<div class="mb-5">
+		<h1>Registered blood donors</h1>
+	</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateOfBirth)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telephone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastDonation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfBirth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telephone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastDonation)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					<label class="control-label">Full Name</label>
+				</th>
+				<th>
+					<label class="control-label">E-mail</label>
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Address.Street)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Address.City)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Address.State)
+				</th>
+				<th>
+					<label class="control-label">Blood Type</label>
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.FullName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Email)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Address.Street)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Address.City)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Address.State)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.BloodType.AboRhType)
+					</td>
+					<td>
+						<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+						<a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+						<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

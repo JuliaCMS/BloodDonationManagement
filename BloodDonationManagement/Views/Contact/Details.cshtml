@@ -7,7 +7,6 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Contact</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -16,22 +15,28 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RegisteredId)
+        <dt class="col-sm-2">
+            <label asp-for="UserType" class="control-label">User Type</label>
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RegisteredId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserType)
-        </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.UserType)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Subject)
+        <dt class="col-sm-2">
+            <label asp-for="Email" class="control-label">E-mail</label>
         </dt>
         <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Telephone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Telephone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Subject)
         </dd>
         <dt class = "col-sm-2">
@@ -40,9 +45,11 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Message)
         </dd>
+        
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Reply" asp-route-id="@Model?.Id">Reply</a> |
+    <a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a> |
     <a asp-action="Index">Back to List</a>
 </div>

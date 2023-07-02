@@ -31,23 +31,24 @@ namespace BloodDonationManagement.DataAcessLayer
             optionsBuilder.UseSqlServer(connectionString);
         }
 
+        /*
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Configures entity relationships and properties
 
             modelBuilder.Entity<BloodBank>()
             .HasOne(b => b.Address)
-            .WithOne()
+            .WithOne(a => a.BloodBank)
             .HasForeignKey<BloodBank>(b => b.AddressId);
 
             modelBuilder.Entity<Donor>()
                 .HasOne(d => d.Address)
-                .WithOne()
+                .WithOne(a => a.Donor)
                 .HasForeignKey<Donor>(d => d.AddressId);
 
             modelBuilder.Entity<BloodBank>()
                 .HasOne(b => b.BloodInventory)
-                .WithOne()
+                .WithOne(i => i.BloodBank)
                 .HasForeignKey<BloodBank>(b => b.BloodInventoryId);
 
             modelBuilder.Entity<BloodBank>()
@@ -62,10 +63,16 @@ namespace BloodDonationManagement.DataAcessLayer
                 .HasForeignKey(r => r.DonorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Donor>()
+            .HasOne(d => d.BloodType)
+            .WithOne(b => b.Donor)
+            .HasForeignKey<Donor>(b => b.BloodTypeId);
+
             modelBuilder.Entity<BloodType>()
                 .HasOne(c => c.BloodInventory)
                 .WithMany(i => i.Components)
                 .HasForeignKey(c => c.BloodInventoryId);
         }
+        */
     }
 }

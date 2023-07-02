@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using BloodDonationManagement.DataAcessLayer;
+﻿using BloodDonationManagement.DataAcessLayer;
 using BloodDonationManagement.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BloodDonationManagement.Controllers
 {
@@ -22,12 +17,12 @@ namespace BloodDonationManagement.Controllers
         // GET: Contact
         public async Task<IActionResult> Index()
         {
-              return _context.Contacts != null ? 
-                          View(await _context.Contacts.ToListAsync()) :
-                          Problem("Entity set 'DBContext.Contacts'  is null.");
+            return _context.Contacts != null ?
+                        View(await _context.Contacts.ToListAsync()) :
+                        Problem("Entity set 'DBContext.Contacts'  is null.");
         }
 
-        // GET: Contact/Details/5
+        // GET: Contact/Details/Id
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Contacts == null)
@@ -35,8 +30,8 @@ namespace BloodDonationManagement.Controllers
                 return NotFound();
             }
 
-            var contact = await _context.Contacts
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var contact = await _context.Contacts.FirstOrDefaultAsync(m => m.Id == id);
+
             if (contact == null)
             {
                 return NotFound();
@@ -52,8 +47,6 @@ namespace BloodDonationManagement.Controllers
         }
 
         // POST: Contact/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,RegisteredId,Email,Telephone,UserType,Subject,Message")] Contact contact)
@@ -62,7 +55,12 @@ namespace BloodDonationManagement.Controllers
             {
                 _context.Add(contact);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                // model flag  -> tentar depois
+                //ViewBag.MensagemEnviada = true;
+
+                // redirect to view
+                return RedirectToAction(nameof(Create));
             }
             return View(contact);
         }
@@ -150,14 +148,14 @@ namespace BloodDonationManagement.Controllers
             {
                 _context.Contacts.Remove(contact);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ContactExists(int id)
         {
-          return (_context.Contacts?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Contacts?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

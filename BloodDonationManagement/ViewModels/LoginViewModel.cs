@@ -1,9 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BloodDonationManagement.ViewModels
+﻿namespace BloodDonationManagement.ViewModels
 {
     public class LoginViewModel
     {
-        
+
     }
 }

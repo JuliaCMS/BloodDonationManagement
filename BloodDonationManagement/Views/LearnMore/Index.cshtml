@@ -1,122 +1,203 @@
 ﻿@{
-    ViewData["Title"] = "Learn More";
+	ViewData["Title"] = "Learn More";
 }
 
 <body>
-<header class="bg-light py-5">
-    <div class="container px-5">
-        <div class="row gx-5 align-items-center justify-content-center">
-            <div class="col-lg-8 col-xl-7 col-xxl-6">
-                <div class="my-5 text-center text-xl-start">
-                    <h1 class="display-5 fw-bolder text-dark mb-2">Blood Donation</h1>
-                    <p class="lead fw-normal text-dark-50 mb-4">
-                        Donation is an altruistic and solidarity act, blood donation is an act that saves lives. This is a gesture of love that can generate many smiles.
+	<header class="bg-light py-2">
+		<div class="container px-5">
+			<div class="row gx-5 align-items-center justify-content-center">
+				<div class="col-lg-8 col-xl-7 col-xxl-6">
+					<div class="my-5 text-center text-xl-start">
+						<h1 class="display-5 fw-bolder text-dark mb-2">Blood Donation</h1>
+						<p class="lead fw-normal text-muted mb-4">
+							Blood consumption is daily and continuous, as it is used in various situations: in chronic anemias, emergency surgeries, accidents that cause bleeding,
+							complications from dengue fever, yellow fever, cancer treatment and other serious diseases.<br>
+							It should be noted that there is no substitute for blood and its availability is essential in various situations.<br />
+							Now that you understand the importance of this act of solidarity, do your part. Register on our platform to be captured and donate blood regularly. <br /><br />
+							Lives depend on you!
+						</p>
+					</div>
+				</div>
+				<div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+					<img class="img-fluid rounded-3 my-5" src="~/assets/img/learnmore/learn-more.jpg" alt="..." />
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Features section-->
+	<section class="py-5" id="features">
+		<div class="container px-5 my-5">
+			<div class="row gx-5">
+				<div class="col-lg-4 mb-5 mb-lg-0">
+					<h2 class="fw-bolder mb-0 text-center">
+						A single donation can help save four lives.<br />
+						See the four blood components used for transfusion and their main uses:
+					</h2>
+				</div>
+				<div class="col-lg-8">
+					<div class="row gx-5 row-cols-1 row-cols-md-2">
+						<div class="col mb-5 h-100">
+							<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+							<h2 class="h5 text-danger">Red Blood Cell Concentrate</h2>
+							<p class="mb-0">Anemia where oxygen transport is compromised.</p>
+						</div>
+						<div class="col mb-5 h-100">
+							<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+							<h2 class="h5 text-danger">Platelet Concentrate</h2>
+							<p class="mb-0">Severe bleeding due to platelet deficiency.</p>
+						</div>
+						<div class="col mb-5 mb-md-0 h-100">
+							<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+							<h2 class="h5 text-danger">Fresh Frozen Plasma</h2>
+							<p class="mb-0">Patients with coagulation factor deficiencies or for the production of plasma derivatives.</p>
+						</div>
+						<div class="col h-100">
+							<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+							<h2 class="h5 text-danger">Cryoprecipitate</h2>
+							<p class="mb-0">Hypofibrinogenemia, dysfibrinogenemia, Factor XIII deficiency.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-                        Blood consumption is daily and continuous, as it is used in various situations: in chronic anemias, emergency surgeries, accidents that cause bleeding, complications from dengue fever, yellow fever, cancer treatment and other serious diseases. It should be noted that there is no substitute for blood and its availability is essential in various situations.
+	<!-- Sidebar -->
+	<section class="d-flex border-top vh-100" id="wrapper">
+		<div class="border-end bg-white" id="sidebar-wrapper">
+			<div class="list-group list-group-flush">
+				<a class="list-group-item list-group-item-action list-group-item-light p-3"
+				   href="#eligibility-requirements">Eligibility Requirements</a>
+				<a class="list-group-item list-group-item-action list-group-item-light p-3"
+				   href="#faq">F.A.Q.</a>
+				<a class="list-group-item list-group-item-action list-group-item-light p-3"
+				   href="#donation-process">Donation Process Overview</a>
+			</div>
+		</div>
+		<!-- Page content wrapper -->
+		<div id="page-content-wrapper" class="flex-grow-1">
+			<!-- Page content -->
+			<div class="container-fluid">
+				<div id="eligibility-requirements">
+					<h1 class="m-4">Eligibility Requirements</h1>
+					<hr />
+					<div class="m-4" data-mh="grid-text" style="">
+						<h3>Basic Requirements for Blood Donation</h3>
+						<p>To donate blood, you will need to:</p>
+						<ul>
+							<li>Be in good health.</li>
+							<li>Be between 16 and 69 years old, with the first donation made by the age of 60 (for individuals under 18, authorization from the responsible party is required).</li>
+							<li>Weigh between 7 stone 12 lbs (50kg) and 25 stone (158kg).</li>
+							<li>Be well-rested (having slept at least 6 hours in the last 24 hours).</li>
+							<li>Have had a meal (avoid fatty foods in the 4 hours preceding the donation).</li>
+							<li>Present an original photo identification document.</li>
+						</ul>
+					</div>
+					<div class="grid-text m-4" data-mh="grid-text" style="">
+						<h3>Who Can't Donate Blood</h3>
+						<p>You cannot donate blood if you:</p>
+						<ul>
+							<li>Have had most types of cancer.</li>
+							<li>Have certain heart conditions.</li>
+							<li>Have received blood, platelets, plasma, or any other blood products after 1 January 1980.</li>
+							<li>Have tested positive for HIV.</li>
+							<li>Have had an organ transplant.</li>
+							<li>Are a hepatitis B carrier.</li>
+							<li>Are a hepatitis C carrier.</li>
+							<li>Have injected non-prescribed drugs, including body-building and injectable tanning agents. You may be able to donate if a doctor prescribed the drugs.</li>
+						</ul>
+					</div>
+				</div>
+				<div id="faq" style="display: none;">
+					<h1 class="m-4">F.A.Q.</h1>
+					<hr />
+					<div class="grid-text m-4" data-mh="grid-text" style="">
+						<ul>
+							<li>
+								<p><strong>Why Can't Diabetics Donate Blood?</strong></p>
+								<p>Diabetics who are insulin-dependent, meaning they require insulin to maintain their blood sugar levels close to normal, are not eligible to donate blood. These individuals have significant cardiovascular system alterations, and as a result, they may experience reactions during or immediately after blood donation that could worsen their health condition.</p>
+							</li>
+							<li>
+								<p><strong>Why Can't Individuals Weighing Less than 50 kg Donate Blood?</strong></p>
+								<p>The total volume of blood to be collected is directly related to the donor's weight. For men, the volume cannot exceed 9 ml per kg of body weight, and for women, it cannot exceed 8 ml per kg of body weight. The anticoagulant present in the collection bag prevents the blood from clotting. The volume of anticoagulant in the bag is standardized for a minimum of 400 ml of blood. Therefore, a person weighing less than 50 kg would not be able to donate the minimum required volume.</p>
+							</li>
+							<li>
+								<p><strong>Is Blood Donation Allowed during Breastfeeding?</strong></p>
+								<p>No, women who are breastfeeding cannot donate blood unless the delivery occurred more than one year ago.</p>
+							</li>
+							<li>
+								<p><strong>How Long Does It Take for the Body to Replenish Donated Blood?</strong></p>
+								<p>The replenishment of plasma volume occurs within 24 hours, while red blood cells take about 4 weeks. However, to reach the same iron stock level as before the donation, it takes 8 weeks for men and 12 weeks for women.</p>
+							</li>
+							<li>
+								<p><strong>Is the Blood Collection Material Safe?</strong></p>
+								<p>Yes, all the materials used for blood collection are individual, disposable, sterile, and pyrogen-free (do not cause fever). There is no risk of the donor acquiring an infectious disease through blood donation.</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="donation-process" style="display: none;">
+					<h1 class="mt-4">Donation Process Overview</h1>
+					<hr />
+					<div class="grid-text m-4" data-mh="grid-text" style="">
+						<ul>
+							<li>
+								<p><strong>1- Registration</strong></p>
+								<p>On our website, you'll register yourself with basic information such as your name, address, date of birth, blood type, etc. </p>
+							</li>
+							<li>
+								<p><strong>2- Request</strong></p>
+								<p>A blood bank will contact you through our database to summon you for donation.</p>
+							</li>
+							<li>
+								<p><strong>3- Pre-Trial and Clinical Screening</strong></p>
+								<p>You will undergo a pre-trial and clinical screening which includes a confidential questionnaire and vital signs checks.</p>
+							</li>
+							<li>
+								<p><strong>3- Self-Exclusion Option</strong></p>
+								<p>To ensure maximum safety, if you felt uncomfortable answering some questions, you'll have the option to indicate privately that your blood should not be used for transfusion. </p>
+							</li>
+							<li>
+								<p><strong>4- Donation</strong></p>
+								<p>The collection process usually takes 5 to 10 minutes, and you will be assisted throughout the procedure.</p>
+							</li>
+							<li>
+								<p><strong>5- Rest and Snack</strong></p>
+								<p>After donating, you will have a resting period of approximately 10 minutes under observation, and then you can proceed to the snack area.</p>
+							</li>
+							<li>
+								<p><strong>6- Testing</strong></p>
+								<p>Your donated blood will undergo specific tests. In addition to blood typing (ABO and Rh group), various tests will be conducted to detect possible infections</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-                        Now that you understand the importance of this act of solidarity, do your part. Register on our platform to be captured and donate blood regularly. Lives depend on you!
-                    </p>
-                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Start scrolling</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
-                <img class="img-fluid rounded-3 my-5" src="~/assets/img/learnmore/mask_image_2.jpg.img.jpeg" alt="..." />
-                </div>
-        </div>
-    </div>
-</header>
-<!-- Features section-->
-<section class="py-5" id="features">
-    <div class="container px-5 my-5">
-        <div class="row gx-5">
-            <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0 text-center">A single donation can help save four lives.<br />
-                    See the four blood components used for transfusion and their main uses:
-                </h2>
-            </div>
-            <div class="col-lg-8">
-                <div class="row gx-5 row-cols-1 row-cols-md-2">
-                    <div class="col mb-5 h-100">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
-                        <h2 class="h5 text-danger">Red Blood Cell Concetrate</h2>
-                        <p class="mb-0">Anemia where oxygen transport is compromised.</p>
-                    </div>
-                    <div class="col mb-5 h-100">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-                        <h2 class="h5 text-danger">Platelet Concentrate</h2>
-                        <p class="mb-0">Severe bleeding due to platelet deficiency.</p>
-                    </div>
-                    <div class="col mb-5 mb-md-0 h-100">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-                        <h2 class="h5 text-danger">Fresh Frozen Plasma</h2>
-                        <p class="mb-0">Patients with coagulation factor deficiencies or for the production of plasma derivatives.</p>
-                    </div>
-                    <div class="col h-100">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-                        <h2 class="h5 text-danger">Cryoprecipitate</h2>
-                        <p class="mb-0">Hypofibrinogenemia, dysfibrinogenemia, Factor XIII deficiency.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Sidebar -->
-    <section class="d-flex border-top vh-100" id="wrapper">
-        <div class="border-end bg-white" id="sidebar-wrapper">
-            <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                   href="#eligibility-requirements">Eligibility Requirements</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" 
-                    href="#faq">F.A.Q.</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                   href="#donation-process">Donation Process Overview</a>
-            </div>
-        </div>
-        <!-- Page content wrapper -->
-        <div id="page-content-wrapper" class="flex-grow-1">
-            <!-- Page content -->
-            <div class="container-fluid">
-                <div id="eligibility-requirements">
-                    <h1 class="mt-4">Eligibility Requirements</h1>
-                    <p># teste 1</p>
-                </div>
-                <div id="faq" style="display: none;">
-                    <h1 class="mt-4">F.A.Q.</h1>
-                    <p># teste 2</p>
-                </div>
-                <div id="donation-process" style="display: none;">
-                    <h1 class="mt-4">Donation Process Overview</h1>
-                    <p># teste 3</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // get sidebar links
-            const links = document.querySelectorAll("#sidebar-wrapper a");
-            // Add click event to each link
-            links.forEach(function (link) {
-                link.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    // Get link target (content related ID)
-                    const targetId = this.getAttribute("href").substring(1);
-                    // Hide content
-                    const contents = document.querySelectorAll("#page-content-wrapper > .container-fluid > div");
-                    contents.forEach(function (content) {
-                        content.style.display = "none";
-                    });
-                    // Show related target content
-                    const targetContent = document.getElementById(targetId);
-                    if (targetContent) {
-                        targetContent.style.display = "block";
-                    }
-                });
-            });
-        });
-    </script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// get sidebar links
+			const links = document.querySelectorAll("#sidebar-wrapper a");
+			// Add click event to each link
+			links.forEach(function (link) {
+				link.addEventListener("click", function (event) {
+					event.preventDefault();
+					// Get link target (content related ID)
+					const targetId = this.getAttribute("href").substring(1);
+					// Hide content
+					const contents = document.querySelectorAll("#page-content-wrapper > .container-fluid > div");
+					contents.forEach(function (content) {
+						content.style.display = "none";
+					});
+					// Show related target content
+					const targetContent = document.getElementById(targetId);
+					if (targetContent) {
+						targetContent.style.display = "block";
+					}
+				});
+			});
+		});
+	</script>
 </body>

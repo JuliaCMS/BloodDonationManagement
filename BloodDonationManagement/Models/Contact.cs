@@ -1,7 +1,10 @@
-﻿namespace BloodDonationManagement.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BloodDonationManagement.Models;
 
 public class Contact
 {
+    [Key]
     public int Id { get; set; }
 
     public string Name { get; set; }

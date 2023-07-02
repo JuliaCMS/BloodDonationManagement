@@ -7,19 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="NovaPasta\**" />
     <Compile Remove="Views\Donor\**" />
     <Compile Remove="Views\Login\**" />
     <Compile Remove="wwwroot\assets\home\**" />
-    <Content Remove="NovaPasta\**" />
     <Content Remove="Views\Donor\**" />
     <Content Remove="Views\Login\**" />
     <Content Remove="wwwroot\assets\home\**" />
-    <EmbeddedResource Remove="NovaPasta\**" />
     <EmbeddedResource Remove="Views\Donor\**" />
     <EmbeddedResource Remove="Views\Login\**" />
     <EmbeddedResource Remove="wwwroot\assets\home\**" />
-    <None Remove="NovaPasta\**" />
     <None Remove="Views\Donor\**" />
     <None Remove="Views\Login\**" />
     <None Remove="wwwroot\assets\home\**" />

@@ -1,64 +1,85 @@
 ﻿@model BloodDonationManagement.Models.BloodBank
 
 @{
-    ViewData["Title"] = "Edit";
+	ViewData["Title"] = "Edit Blood Bank";
 }
 
-<h1>Edit</h1>
-
-<h4>BloodBank</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Login" class="control-label"></label>
-                <input asp-for="Login" class="form-control" />
-                <span asp-validation-for="Login" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AddressId" class="control-label"></label>
-                <select asp-for="AddressId" class="form-control" asp-items="ViewBag.AddressId"></select>
-                <span asp-validation-for="AddressId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telephone" class="control-label"></label>
-                <input asp-for="Telephone" class="form-control" />
-                <span asp-validation-for="Telephone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BloodInventoryId" class="control-label"></label>
-                <select asp-for="BloodInventoryId" class="form-control" asp-items="ViewBag.BloodInventoryId"></select>
-                <span asp-validation-for="BloodInventoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="container  mt-5">
+	<div class=" text-center">
+		<h2 class="heading mb-4">
+			Update Blood Bank
+		</h2>
+		<hr class="mb-5" />
+	</div>
+	<form asp-action="Edit" method="post">
+		<div class="form-outline mb-4">
+			<label asp-for="Name" class="control-label"></label>
+			<input asp-for="Name" class="form-control" placeholder="Blood Bank Name" />
+			<span asp-validation-for="Name" class="text-danger"></span>
+		</div>
+		<!--
+		<div class="form-outline mb-4">
+			<label asp-for="CNPJ" class="control-label">CNPJ</label>
+			<input asp-for="CNPJ" class="form-control" placeholder="CNPJ" />
+			<span asp-validation-for="CNPJ" class="text-danger"></span>
+		</div>
+		-->
+		<div class="form-outline mb-4">
+			<label asp-for="Email" class="control-label">E-mail</label>
+			<input asp-for="Email" class="form-control" placeholder="email@email.com" />
+			<span asp-validation-for="Email" class="text-danger"></span>
+		</div>
+		<div class="form-outline mb-4">
+			<label asp-for="Telephone" class="control-label"></label>
+			<input asp-for="Telephone" class="form-control" placeholder="(00)0000-0000" />
+			<span asp-validation-for="Telephone" class="text-danger"></span>
+		</div>
+		<div class="form-outline mb-4">
+			<label asp-for="Address.Street" class="control-label">Street</label>
+			<input asp-for="Address.Street" class="form-control" placeholder="Street Example 123" />
+			<span asp-validation-for="Address.Street" class="text-danger"></span>
+		</div>
+		<div class="row mb-4">
+			<div class="col">
+				<div class="form-outline">
+					<label asp-for="Address.City" class="control-label">City</label>
+					<input asp-for="Address.City" class="form-control" placeholder="City" />
+					<span asp-validation-for="Address.City" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-outline">
+					<label asp-for="Address.State" class="control-label">State</label>
+					<input asp-for="Address.State" class="form-control" placeholder="State" />
+					<span asp-validation-for="Address.State" class="text-danger"></span>
+				</div>
+			</div>
+		</div>
+		<div class="row mb-4">
+			<div class="col">
+				<div class="form-outline">
+					<label asp-for="Login" class="control-label"></label>
+					<input asp-for="Login" class="form-control" placeholder="Login" />
+					<span asp-validation-for="Login" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-outline">
+					<label asp-for="Password" class="control-label"></label>
+					<input asp-for="Password" class="form-control" placeholder="Password" />
+					<span asp-validation-for="Password" class="text-danger"></span>
+				</div>
+			</div>
+		</div>
+		<!-- Submit button -->
+		<input type="submit" value="Save changes" class="btn btn-primary" />
+		<a asp-action="Index">Back to List</a>
+	</form>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

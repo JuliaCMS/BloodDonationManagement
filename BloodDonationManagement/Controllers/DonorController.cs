@@ -1,165 +1,144 @@
-﻿using BloodDonationManagement.DataAcessLayer;
+﻿using BloodDonationManagement.Interfaces;
 using BloodDonationManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BloodDonationManagement.Controllers
 {
 	public class DonorController : Controller
 	{
-		private readonly DBContext _context;
+		private readonly IDonorRepository _donorRepository;
 
-		public DonorController(DBContext context)
+		public DonorController(IDonorRepository repository)
 		{
-			_context = context;
+			_donorRepository = repository;
 		}
 
+		// GET: Donor/Index = All donors
+		public async Task<IActionResult> Index()
+		{
+			IEnumerable<Donor> donors = await _donorRepository.GetAll();
+			return View(donors);
+		}
 
-        // GET: Donor
-        public async Task<IActionResult> Index()
-        {
-            return _context.Donors != null ?
-                        View(await _context.Donors.ToListAsync()) :
-                        Problem("Entity set 'DBContext.Donors'  is null.");
-        }
+		// GET: Donor/Details/{1}
+		public async Task<IActionResult> Details(int id)
+		{
+			Donor donor = await _donorRepository.GetByIdAsync(id);
+			return View(donor);
+		}
 
-        // GET: Donor/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Donors == null)
-            {
-                return NotFound();
-            }
+		// GET: Donor/Create = form
+		public IActionResult Create()
+		{
+			return View();
+		}
 
-            var donor = await _context.Donors
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (donor == null)
-            {
-                return NotFound();
-            }
+		// POST: Donor/Create = Create new Donor
+		//[ValidateAntiForgeryToken]
+		[HttpPost]
+		public async Task<IActionResult> Create(Donor donor)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(donor);
+			}
+			_donorRepository.Add(donor);
+			return RedirectToAction("Index");
+		}
 
-            return View(donor);
-        }
+		// GET: Donor/Edit/{id}
+		public async Task<IActionResult> Edit(int id)
+		{
+			var donor = await _donorRepository.GetByIdAsync(id);
+			if (donor == null)
+			{
+				return NotFound();
+			}
+			return View(donor);
+		}
 
-        // GET: Donor/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+		// POST: Donor/Edit/{id}
+		[HttpPost]
+		//[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Edit(int id, Donor donor)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
 
+			var editDonor = await _donorRepository.GetByIdAsyncNoTracking(id);
 
-        // POST: Donor/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FullName,Cpf,DateOfBirth,Email,Telephone1,Telephone2,LastDonation")] Donor donor)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(donor);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(donor);
-        }
+			if (editDonor == null)
+			{
+				return NotFound("Donor not found!");
+			}
 
+			try
+			{
+				editDonor.Id = id;
+				editDonor.FullName = donor.FullName;
+				editDonor.DateOfBirth = donor.DateOfBirth;
+				editDonor.Email = donor.Email;
+				editDonor.Telephone = donor.Telephone;
+				editDonor.BloodTypeId = donor.BloodTypeId;
+				editDonor.BloodType = donor.BloodType;
+				editDonor.LastDonation = donor.LastDonation;
+				editDonor.AddressId = donor.AddressId;
+				editDonor.Address = donor.Address;
 
-        // GET: Donor/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Donors == null)
-            {
-                return NotFound();
-            }
+				_donorRepository.Update(editDonor);
+				return RedirectToAction("Index");
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(ex.Message);
+			}
+		}
 
-            var donor = await _context.Donors.FindAsync(id);
-            if (donor == null)
-            {
-                return NotFound();
-            }
-            return View(donor);
-        }
+		//// GET: Donor/Delete/5
+		//public async Task<IActionResult> Delete(int? id)
+		//{
+		//    if (id == null || _context.Donors == null)
+		//    {
+		//        return NotFound();
+		//    }
 
-        // POST: Donor/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,Cpf,DateOfBirth,Email,Telephone1,Telephone2,LastDonation")] Donor donor)
-        {
-            if (id != donor.Id)
-            {
-                return NotFound();
-            }
+		//    var donor = await _context.Donors
+		//        .Include(d => d.Address)
+		//        .Include(d => d.BloodType)
+		//        .FirstOrDefaultAsync(m => m.Id == id);
+		//    if (donor == null)
+		//    {
+		//        return NotFound();
+		//    }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(donor);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DonorExists(donor.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(donor);
-        }
+		//    return View(donor);
+		//}
 
-        // GET: Donor/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Donors == null)
-            {
-                return NotFound();
-            }
+		//// POST: Donor/Delete/5
+		//[HttpPost, ActionName("Delete")]
+		//[ValidateAntiForgeryToken]
+		//public async Task<IActionResult> DeleteConfirmed(int id)
+		//{
+		//    if (_context.Donors == null)
+		//    {
+		//        return Problem("Entity set 'DBContext.Donors'  is null.");
+		//    }
+		//    var donor = await _context.Donors.FindAsync(id);
+		//    if (donor != null)
+		//    {
+		//        _context.Donors.Remove(donor);
+		//    }
 
-            var donor = await _context.Donors
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (donor == null)
-            {
-                return NotFound();
-            }
+		//    await _context.SaveChangesAsync();
+		//    return RedirectToAction(nameof(Index));
+		//}
 
-            return View(donor);
-        }
-
-        // POST: Donor/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Donors == null)
-            {
-                return Problem("Entity set 'DBContext.Donors'  is null.");
-            }
-            var donor = await _context.Donors.FindAsync(id);
-            if (donor != null)
-            {
-                _context.Donors.Remove(donor);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool DonorExists(int id)
-        {
-            return (_context.Donors?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
-    }
+		//private bool DonorExists(int id)
+		//{
+		//  return (_context.Donors?.Any(e => e.Id == id)).GetValueOrDefault();
+		//}
+	}
 }

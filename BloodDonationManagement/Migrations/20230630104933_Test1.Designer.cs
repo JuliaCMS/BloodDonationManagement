@@ -4,6 +4,7 @@ using BloodDonationManagement.DataAcessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BloodDonationManagement.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20230630104933_Test1")]
+    partial class Test1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,10 +90,10 @@ namespace BloodDonationManagement.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AddressId")
+                    b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("BloodInventoryId")
+                    b.Property<int>("BloodInventoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -118,8 +121,7 @@ namespace BloodDonationManagement.Migrations
                     b.HasIndex("AddressId");
 
                     b.HasIndex("BloodInventoryId")
-                        .IsUnique()
-                        .HasFilter("[BloodInventoryId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("BloodBanks");
                 });
@@ -146,15 +148,17 @@ namespace BloodDonationManagement.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AboRhType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BloodComponentType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("BloodInventoryId")
+                    b.Property<int>("BloodInventoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Quantity")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -218,9 +222,8 @@ namespace BloodDonationManagement.Migrations
                     b.Property<int>("DonorId")
                         .HasColumnType("int");
 
-                    b.Property<string>("RequisitionDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("RequisitionDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -239,10 +242,10 @@ namespace BloodDonationManagement.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AddressId")
+                    b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("BloodTypeId")
+                    b.Property<int>("BloodTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("DateOfBirth")
@@ -277,11 +280,15 @@ namespace BloodDonationManagement.Migrations
                 {
                     b.HasOne("BloodDonationManagement.Models.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("AddressId");
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("BloodDonationManagement.Models.BloodInventory", "BloodInventory")
                         .WithOne("BloodBank")
-                        .HasForeignKey("BloodDonationManagement.Models.BloodBank", "BloodInventoryId");
+                        .HasForeignKey("BloodDonationManagement.Models.BloodBank", "BloodInventoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Address");
 
@@ -292,7 +299,9 @@ namespace BloodDonationManagement.Migrations
                 {
                     b.HasOne("BloodDonationManagement.Models.BloodInventory", "BloodInventory")
                         .WithMany("Components")
-                        .HasForeignKey("BloodInventoryId");
+                        .HasForeignKey("BloodInventoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("BloodInventory");
                 });
@@ -320,11 +329,15 @@ namespace BloodDonationManagement.Migrations
                 {
                     b.HasOne("BloodDonationManagement.Models.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("AddressId");
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("BloodDonationManagement.Models.BloodType", "BloodType")
                         .WithMany()
-                        .HasForeignKey("BloodTypeId");
+                        .HasForeignKey("BloodTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Address");
 
@@ -338,7 +351,8 @@ namespace BloodDonationManagement.Migrations
 
             modelBuilder.Entity("BloodDonationManagement.Models.BloodInventory", b =>
                 {
-                    b.Navigation("BloodBank");
+                    b.Navigation("BloodBank")
+                        .IsRequired();
 
                     b.Navigation("Components");
                 });

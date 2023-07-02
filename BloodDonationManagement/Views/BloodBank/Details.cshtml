@@ -1,60 +1,75 @@
 ﻿@model BloodDonationManagement.Models.BloodBank
 
 @{
-    ViewData["Title"] = "Details";
+	ViewData["Title"] = "Blood Bank Details";
 }
 
-<h1>Details</h1>
+<div>
+	<h2>Blood Bank Details</h2>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Email)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Email)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Telephone)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Telephone)
+		</dd>
+		<hr />
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Login)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Login)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Password)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Password)
+		</dd>
+		<hr />
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Address.Street)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Address.Street)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Address.City)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Address.City)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Address.State)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Address.State)
+		</dd>
+		<hr />
+		<dt class="col-sm-2">
+			<label asp-for="BloodInventory" class="control-label">Blood Inventory ID</label>
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.BloodInventory.Id)
+		</dd>
+	</dl>
+</div>
 
 <div>
-    <h4>BloodBank</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Login)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Login)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telephone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telephone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BloodInventory)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BloodInventory.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+	<a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+	<a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a> |
+	<a asp-action="Index">Back to List</a>
 </div>

@@ -1,7 +1,4 @@
 ﻿using BloodDonationManagement.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 
 namespace BloodDonationManagement.DataAcessLayer
 {

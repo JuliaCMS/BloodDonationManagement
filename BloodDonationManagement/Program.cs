@@ -1,4 +1,6 @@
 using BloodDonationManagement.DataAcessLayer;
+using BloodDonationManagement.Interfaces;
+using BloodDonationManagement.Repository;
 
 namespace BloodDonationManagement
 {
@@ -10,6 +12,9 @@ namespace BloodDonationManagement
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IDonorRepository, DonorRepository>();
+            builder.Services.AddScoped<IBloodBankRepository, BloodBankRepository>();
 
             builder.Services.AddDbContext<DBContext>();
 

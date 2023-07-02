@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BloodDonationManagement.Models
 {
@@ -7,6 +6,8 @@ namespace BloodDonationManagement.Models
     {
         [Key]
         public int Id { get; set; }
+
+        public virtual BloodBank? BloodBank { get; set; }
 
         public virtual ICollection<BloodType> Components { get; set; }
     }

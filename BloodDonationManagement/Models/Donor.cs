@@ -10,21 +10,21 @@ namespace BloodDonationManagement.Models
 
         public string FullName { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public string DateOfBirth { get; set; }
 
         public string Email { get; set; }
 
-        [ForeignKey("Address")]
-        public int AddressId { get; set; }
-        public virtual Address Address { get; set; }
-
         public string Telephone { get; set; }
 
-        [ForeignKey("BloodType")]
-        public int BloodTypeId { get; set; }
-        public virtual BloodType BloodType { get; set; }
+        public string? LastDonation { get; set; }
 
-        public DateTime? LastDonation { get; set; }
+        [ForeignKey("Address")]
+        public int? AddressId { get; set; }
+        public virtual Address? Address { get; set; }
+
+        [ForeignKey("BloodType")]
+        public int? BloodTypeId { get; set; }
+        public virtual BloodType? BloodType { get; set; }
 
         public virtual ICollection<DonationRequisition> Requisitions { get; set; } = new List<DonationRequisition>();
     }

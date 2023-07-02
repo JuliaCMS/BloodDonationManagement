@@ -16,16 +16,16 @@ namespace BloodDonationManagement.Models
 
         public string Password { get; set; }
 
-        [ForeignKey("Address")]
-        public int AddressId { get; set; }
-        public virtual Address Address { get; set; }
-
         public string Telephone { get; set; }
 
+        [ForeignKey("Address")]
+        public int? AddressId { get; set; }
+        public virtual Address? Address { get; set; }
+
         [ForeignKey("BloodInventory")]
-        public int BloodInventoryId { get; set; }
+        public int? BloodInventoryId { get; set; }
         public virtual BloodInventory? BloodInventory { get; set; }
-        
+
         public virtual ICollection<DonationRequisition> Requisitions { get; set; } = new List<DonationRequisition>();
     }
 }
