@@ -84,8 +84,7 @@ namespace BloodDonationManagement.Controllers
 			var newUser = new AppUser()
 			{
 				Email = registerViewModel.EmailAddress,
-				UserName = registerViewModel.EmailAddress,
-				Name = 
+				UserName = registerViewModel.EmailAddress
 			};
 			var newUserResponse = await _userManager.CreateAsync(newUser, registerViewModel.Password);
 
@@ -93,7 +92,7 @@ namespace BloodDonationManagement.Controllers
 			{
 				await _userManager.AddToRoleAsync(newUser, UserRoles.User);
 			}
-			return View("Home");
+			return RedirectToAction("Index", "Donor");
 		}
 
 		[HttpPost]
