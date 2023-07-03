@@ -6,9 +6,6 @@
 }
 <div class="row">
     <div class="col-md-6 offset-3">
-        <p>
-            <h4>Log in to your account</h4>
-        </p>
 
         @*Error message if the login page doesn't work*@
         @if (TempData["Error"] != null)
@@ -19,7 +16,8 @@
         }
 
         <div class="row">
-            <div class="col-md-8 offset-2">
+            <div class="col-md-8 offset-2 ">
+                <h4 class="m-5">Log in to your account</h4>
                 <form asp-action="Login">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
@@ -35,9 +33,14 @@
                     <br />
                     <div class="form-group">
                         <input class="btn btn-outline-success float right" type="submit" value="Log in" />
-                        <a class="btn btn-outline-secondary" asp-controller="BloodBank" asp-action="Index">Cancel</a>
+                        <a class="btn btn-outline-secondary" asp-controller="Account" asp-action="Login">Cancel</a>
                     </div>
+                    <br />
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="Register">Blood Bank Log on</a>
                 </form>
+                <div class="mb-5">
+
+                </div>
             </div>
         </div>
     </div>

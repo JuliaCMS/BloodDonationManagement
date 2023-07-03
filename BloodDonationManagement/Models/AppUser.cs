@@ -5,13 +5,13 @@ namespace BloodDonationManagement.Models
 {
 	public class AppUser : IdentityUser
 	{
-		public string Name { get; set; }
+		public string? Name { get; set; }
 
 		public string? Cnpj { get; set; }
 
 		public string? Cpf { get; set; }
 
-		public string Telephone { get; set; }
+		public string? Telephone { get; set; }
 
 		[ForeignKey("Address")]
 		public int? AddressId { get; set; }
