@@ -54,7 +54,8 @@ namespace BloodDonationManagement
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication(); // user authentication
+            app.UseAuthorization(); // user permissions
 
             app.MapControllerRoute(
                 name: "default",

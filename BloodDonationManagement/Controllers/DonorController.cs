@@ -35,7 +35,6 @@ namespace BloodDonationManagement.Controllers
 		}
 
 		// POST: Donor/Create = Create new Donor
-		//[ValidateAntiForgeryToken]
 		[HttpPost]
 		public async Task<IActionResult> Create(Donor donor)
 		{
@@ -60,7 +59,6 @@ namespace BloodDonationManagement.Controllers
 
 		// POST: Donor/Edit/{id}
 		[HttpPost]
-		//[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Edit(int id, Donor donor)
 		{
 			if (!ModelState.IsValid)
@@ -97,48 +95,31 @@ namespace BloodDonationManagement.Controllers
 			}
 		}
 
-		//// GET: Donor/Delete/5
-		//public async Task<IActionResult> Delete(int? id)
-		//{
-		//    if (id == null || _context.Donors == null)
-		//    {
-		//        return NotFound();
-		//    }
+		// GET: Donor/Delete/{id}
+		public async Task<IActionResult> Delete(int id)
+		{
+			var donorDetails = await _donorRepository.GetByIdAsync(id);
+			if(donorDetails == null)
+			{
+				return BadRequest("Error");
+			}
+			return View(donorDetails);
+		}
 
-		//    var donor = await _context.Donors
-		//        .Include(d => d.Address)
-		//        .Include(d => d.BloodType)
-		//        .FirstOrDefaultAsync(m => m.Id == id);
-		//    if (donor == null)
-		//    {
-		//        return NotFound();
-		//    }
 
-		//    return View(donor);
-		//}
+		// POST: Donor/Delete/{id}
+		[HttpPost, ActionName("Delete")]
+		public async Task<IActionResult> DeleteDonor(int id)
+		{
+			var donorDetails = await _donorRepository.GetByIdAsync(id);
+			if (donorDetails == null)
+			{
+				return BadRequest("Error");
+			}
 
-		//// POST: Donor/Delete/5
-		//[HttpPost, ActionName("Delete")]
-		//[ValidateAntiForgeryToken]
-		//public async Task<IActionResult> DeleteConfirmed(int id)
-		//{
-		//    if (_context.Donors == null)
-		//    {
-		//        return Problem("Entity set 'DBContext.Donors'  is null.");
-		//    }
-		//    var donor = await _context.Donors.FindAsync(id);
-		//    if (donor != null)
-		//    {
-		//        _context.Donors.Remove(donor);
-		//    }
+			_donorRepository.Delete(donorDetails);
+			return RedirectToAction("Index");
+		}
 
-		//    await _context.SaveChangesAsync();
-		//    return RedirectToAction(nameof(Index));
-		//}
-
-		//private bool DonorExists(int id)
-		//{
-		//  return (_context.Donors?.Any(e => e.Id == id)).GetValueOrDefault();
-		//}
 	}
 }
