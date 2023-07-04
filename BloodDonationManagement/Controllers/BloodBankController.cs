@@ -1,6 +1,7 @@
 ﻿using BloodDonationManagement.Interfaces;
 using BloodDonationManagement.Models;
 using BloodDonationManagement.Repository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing;
 
@@ -9,10 +10,12 @@ namespace BloodDonationManagement.Controllers
     public class BloodBankController : Controller
     {
         private readonly IBloodBankRepository _bloodBankRepository;
+        private readonly UserManager<AppUser> _userManager;
 
-        public BloodBankController(IBloodBankRepository repository)
+        public BloodBankController(IBloodBankRepository repository, UserManager<AppUser> userManager)
         {
             _bloodBankRepository = repository;
+			_userManager = userManager;
         }
 
         // GET: BloodBank/Index = All Blood Banks
@@ -43,8 +46,10 @@ namespace BloodDonationManagement.Controllers
             {
                 return View(bloodBank);
             }
+            var user = await _userManager.GetUserAsync(User);
+
             _bloodBankRepository.Add(bloodBank);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Donor");
         }
 
 		// GET: BloodBank/Edit/{id}

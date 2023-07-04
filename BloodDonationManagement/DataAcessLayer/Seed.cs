@@ -224,9 +224,6 @@ namespace BloodDonationManagement.DataAcessLayer
 					var newAdminUser = new AppUser()
 					{
 						UserName = "juliacms",
-						Name = "Julia Mourão",
-						Cpf = "123.456.789-12",
-						Telephone = "(11)91234-5678",
 						Email = adminUserEmail,
 						EmailConfirmed = true,
 						Address = new Address()
@@ -249,9 +246,6 @@ namespace BloodDonationManagement.DataAcessLayer
 					var newAppUser = new AppUser()
 					{
 						UserName = "bs1",
-						Name = "Banco de Sangue São Lucas",
-						Cnpj = "12.132.456/0001-12",
-						Telephone = "(11)1234-5678",
 						Email = appUserEmail,
 						EmailConfirmed = true,
 						Address = new Address()
@@ -260,36 +254,6 @@ namespace BloodDonationManagement.DataAcessLayer
 							City = "Londrina",
 							State = "PR"
 						},
-						BloodInventory = new BloodInventory()
-						{
-							Components = new List<BloodType>()
-							{
-									new BloodType()
-									{
-										BloodComponentType = "Red Blood Cell Concentrate",
-										AboRhType = "O+",
-										Quantity = 46
-									},
-									new BloodType()
-									{
-										BloodComponentType = "Platelets",
-										AboRhType = "A+",
-										Quantity = 5
-									},
-									new BloodType()
-									{
-										BloodComponentType = "Fresh Frozen Plasma",
-										AboRhType = "O-",
-										Quantity = 45
-									},
-									new BloodType()
-									{
-										BloodComponentType = "Cryoprecipitate",
-										AboRhType = "AB+",
-										Quantity = 48
-									}
-							}
-						}
 					};
 					await userManager.CreateAsync(newAppUser, "Coding@1234?");
 					await userManager.AddToRoleAsync(newAppUser, UserRoles.User);

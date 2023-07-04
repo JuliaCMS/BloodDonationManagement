@@ -92,7 +92,7 @@ namespace BloodDonationManagement.Controllers
 			{
 				await _userManager.AddToRoleAsync(newUser, UserRoles.User);
 			}
-			return RedirectToAction("Index", "Donor");
+			return RedirectToAction("Create", "BloodBank");
 		}
 
 		[HttpPost]
