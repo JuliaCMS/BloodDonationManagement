@@ -43,7 +43,9 @@ namespace BloodDonationManagement.Controllers
 				return View(donor);
 			}
 			_donorRepository.Add(donor);
-			return RedirectToAction("Index");
+			TempData["SuccessMessage"] = "Donor successfully registered!";
+
+			return RedirectToAction(nameof(Create));
 		}
 
 		// GET: Donor/Edit/{id}

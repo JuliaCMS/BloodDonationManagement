@@ -101,7 +101,8 @@ namespace BloodDonationManagement.Controllers
 			{
 				await _userManager.AddToRoleAsync(newUser, UserRoles.User);
 			}
-			return RedirectToAction("Create", "BloodBank");
+			TempData["SuccessMessage"] = "User successfully registered! Proceed to login";
+			return RedirectToAction(nameof(Register));
 		}
 
 		[HttpPost]

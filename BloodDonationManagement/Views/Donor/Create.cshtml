@@ -3,78 +3,122 @@
 @{
 	ViewData["Title"] = "Register donor";
 }
-
-<div class="container  mt-5">
-	<div class=" text-center">
-		<h2 class="heading mb-4">Donor Registration</h2>
-		<hr class="mb-5" />
-	</div>
-	<form asp-action="Create" method="post">
-		<div class="form-outline mb-4">
-			<label asp-for="FullName" class="control-label">Full Name</label>
-			<input asp-for="FullName" class="form-control" placeholder="Full Name" />
-			<span asp-validation-for="FullName" class="text-danger"></span>
-		</div>
-		<div class="form-outline mb-4">
-			<label asp-for="DateOfBirth" class="control-label">Date Of Birth</label>
-			<input type="date" asp-for="DateOfBirth" class="form-control"/>
-			<span asp-validation-for="DateOfBirth" class="text-danger"></span>
-		</div>
-		<div class="form-outline mb-4">
-			<label asp-for="Email" class="control-label">E-mail</label>
-			<input asp-for="Email" class="form-control" placeholder="email@email.com" />
-			<span asp-validation-for="Email" class="text-danger"></span>
-		</div>
-		<div class="form-outline mb-4">
-			<label asp-for="Telephone" class="control-label"></label>
-			<input type="text" asp-for=" Telephone" class="form-control" placeholder="(00)0000-0000" />
-			<span asp-validation-for="Telephone" class="text-danger"></span>
-		</div>
-		<div class="form-outline mb-4">
-			<label asp-for="BloodType.AboRhType" class="control-label"></label>
-			<select asp-for="BloodType.AboRhType" class="form-control">
-				<option selected>Choose...</option>
-				<option>I don't know my blood type</option>
-				<option>O+</option>
-				<option>O-</option>
-				<option>A+</option>
-				<option>A-</option>
-				<option>B+</option>
-				<option>B-</option>
-				<option>AB+</option>
-				<option>AB-</option>
-			</select>
-		</div>
-		<div class="form-outline mb-4">
-			<label asp-for="LastDonation" class="control-label">Date of Last Donation</label>
-			<input type="date" asp-for="LastDonation" class="form-control" />
-			<span asp-validation-for="LastDonation" class="text-danger"></span>
-		</div>
-		<div class="form-outline mb-4">
-			<label asp-for="Address.Street" class="control-label">Street</label>
-			<input asp-for="Address.Street" class="form-control" placeholder="Street Example 123" />
-			<span asp-validation-for="Address.Street" class="text-danger"></span>
-		</div>
-		<div class="row mb-4">
-			<div class="col">
-				<div class="form-outline">
-					<label asp-for="Address.City" class="control-label">City</label>
-					<input asp-for="Address.City" class="form-control" placeholder="City" />
-					<span asp-validation-for="Address.City" class="text-danger"></span>
-				</div>
-			</div>
-			<div class="col">
-				<div class="form-outline">
-					<label asp-for="Address.State" class="control-label">State</label>
-					<input asp-for="Address.State" class="form-control" placeholder="State" />
-					<span asp-validation-for="Address.State" class="text-danger"></span>
-				</div>
-			</div>
-		</div>
-		<!-- Submit button -->
-		<input type="submit" value="Create" class="btn btn-primary" />
-	</form>
+<div class=" text-center">
+	<h2 class="heading mb-1">Donor Registration</h2>
 </div>
+@if (TempData.ContainsKey("SuccessMessage"))
+{
+	<div class="alert alert-success" role="alert">
+		@TempData["SuccessMessage"]
+	</div>
+}
+<section class="h-100 h-custom gradient-custom-2">
+
+	<form asp-action="Create" method="post">
+
+		<div class="container py-5 h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col-12">
+					<div class="card card-registration card-registration-2" style="border-radius: 15px;">
+						<div class="card-body p-0">
+							<div class="row g-0">
+								<div class="col-lg-6">
+									<div class="p-5">
+
+										<h3 class="fw-normal mb-5">General Infomation</h3>
+										<div class="mb-4 pb-2">
+											<label asp-for="FullName" class="control-label">Full Name</label>
+											<input asp-for="FullName" class="form-control" placeholder="Full Name" />
+											<span asp-validation-for="FullName" class="text-danger"></span>
+										</div>
+										<div class="mb-4 pb-2">
+											<label asp-for="DateOfBirth" class="control-label">Date Of Birth</label>
+											<input type="date" asp-for="DateOfBirth" class="form-control" />
+											<span asp-validation-for="DateOfBirth" class="text-danger"></span>
+										</div>
+										<div class="row">
+											<div class="col-md-6 mb-4 pb-2">
+												<div class="form-outline">
+													<label asp-for="BloodType.AboRhType" class="control-label">Type ABO / Rh</label>
+													<select asp-for="BloodType.AboRhType" class="form-control">
+														<option selected>Choose...</option>
+														<option>I don't know my blood type</option>
+														<option>O+</option>
+														<option>O-</option>
+														<option>A+</option>
+														<option>A-</option>
+														<option>B+</option>
+														<option>B-</option>
+														<option>AB+</option>
+														<option>AB-</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="mb-4 pb-2">
+											<label asp-for="LastDonation" class="control-label">Date of Last Donation</label>
+											<input type="date" asp-for="LastDonation" class="form-control" />
+											<span asp-validation-for="LastDonation" class="text-danger"></span>
+										</div>
+										<img src="~/assets/img/register/register.png" alt="Imagem" class="img-fluid mt-5 rounded">
+									</div>
+								</div>
+
+								<div class="col-lg-6 bg-indigo text-white">
+									<div class="p-5">
+										<h3 class="fw-normal mb-5">Contact Details</h3>
+										<div class="mb-4 pb-2">
+											<div class="form-outline form-white">
+												<label asp-for="Email" class="control-label">E-mail</label>
+												<input asp-for="Email" class="form-control" placeholder="email@email.com" />
+												<span asp-validation-for="Email" class="text-danger"></span>
+											</div>
+										</div>
+										<div class="mb-4 pb-2">
+											<div class="form-outline form-white">
+												<label asp-for="Telephone" class="control-label"></label>
+												<input type="text" asp-for=" Telephone" class="form-control" placeholder="(00)0000-0000" />
+												<span asp-validation-for="Telephone" class="text-danger"></span>
+											</div>
+										</div>
+										<div class="mb-4 pb-2">
+											<div class="form-outline form-white">
+												<label asp-for="Address.Street" class="control-label">Street + Nr</label>
+												<input asp-for="Address.Street" class="form-control" placeholder="Street Example 123" />
+												<span asp-validation-for="Address.Street" class="text-danger"></span>
+											</div>
+										</div>
+										<div class="mb-4 pb-2">
+											<div class="row">
+												<div class="col-md-7 mb-4 pb-2">
+													<div class="form-outline form-white">
+														<label asp-for="Address.City" class="control-label">City</label>
+														<input asp-for="Address.City" class="form-control" placeholder="City" />
+														<span asp-validation-for="Address.City" class="text-danger"></span>
+													</div>
+												</div>
+												<div class="col-md-5 mb-4 pb-2">
+													<div class="form-outline form-white">
+														<label asp-for="Address.State" class="control-label">State</label>
+														<input asp-for="Address.State" class="form-control" placeholder="State" />
+														<span asp-validation-for="Address.State" class="text-danger"></span>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										<input type="submit" value="Register" class="btn btn-light btn-lg " data-mdb-ripple-color="dark" />
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
 
 @section Scripts {
 	@{
