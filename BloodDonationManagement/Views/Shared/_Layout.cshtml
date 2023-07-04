@@ -9,40 +9,50 @@
 	<link rel="stylesheet" href="~/BloodDonationManagement.styles.css" asp-append-version="true" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" asp-append-version="true">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-	<link href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet"/>
+	<link href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow bg-light border-bottom mb-3">
 			<div class="container-fluid">
 				<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Blood Connect</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-						aria-expanded="false" aria-label="Toggle navigation">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-					<ul class="navbar-nav flex-grow-1">
+				<div class="collapse navbar-collapse" id="navbarCollapse">
+					<ul class="navbar-nav me-auto mb-2 mb-md-0">
 						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+							<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="About" asp-action="Index">About us</a>
+							<a class="nav-link" asp-area="" asp-controller="About" asp-action="Index">About us</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="LearnMore" asp-action="Index">Learn More</a>
+							<a class="nav-link" asp-area="" asp-controller="LearnMore" asp-action="Index">Learn More</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Create">Contact</a>
+							<a class="nav-link" asp-area="" asp-controller="Contact" asp-action="Create">Contact</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Donor" asp-action="Create">Donor Register</a>
+							<a class="nav-link" asp-area="" asp-controller="Donor" asp-action="Create">Donor Register</a>
 						</li>
+					</ul>
+					<ul class="d-flex list-unstyled">
 						@if (User.Identity.IsAuthenticated)
 						{
-							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
-							</li>
+							@if (User.IsInRole("admin"))
+							{
+								<li class="nav-item">
+									<a class="nav-item btn btn-outline-primary" asp-area="" asp-controller="Dashboard" asp-action="Admin">Dashboard</a>
+								</li>
+							}
+							else if (User.IsInRole("user"))  // Correção no uso do "else if"
+							{
+								<li class="nav-item">
+									<a class="nav-item btn btn-outline-primary" asp-area="" asp-controller="Dashboard" asp-action="BloodBank">Dashboard</a>
+								</li>
+							}
 							<li class="nav-item">
 								<form asp-area="" asp-controller="Account" asp-action="Logout">
 									<button class="btn btn-outline-danger">Logout</button>
@@ -52,7 +62,7 @@
 						else
 						{
 							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+								<a class="nav-item btn btn-outline-primary" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
 							</li>
 						}
 					</ul>
@@ -65,8 +75,8 @@
 			@RenderBody()
 		</main>
 	</div>
-	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top text-muted">
-		<p class="col-md-6 col-lg-8 mb-0 text-muted">
+	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top text-muted position-relative bg-light">
+		<p class="col-md-6 col-lg-8 mb-0 text-muted bg-light">
 			&copy; Copyright 2023 |
 			Blood Connect - Blood Donor Management Web Application by JuliaCMS |
 			All Rights Reserved.
