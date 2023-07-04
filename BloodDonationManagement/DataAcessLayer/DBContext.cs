@@ -6,7 +6,6 @@ namespace BloodDonationManagement.DataAcessLayer
 {
     public class DBContext : IdentityDbContext<AppUser>
     {
-        public DbSet<Admin> Admins { get; set; }
         public DbSet<BloodBank> BloodBanks { get; set; }
         public DbSet<BloodInventory> BloodInventories { get; set; }
         public DbSet<Donor> Donors { get; set; }
@@ -32,49 +31,5 @@ namespace BloodDonationManagement.DataAcessLayer
             optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.UseSqlServer(connectionString);
         }
-
-        /*
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            //Configures entity relationships and properties
-
-            modelBuilder.Entity<BloodBank>()
-            .HasOne(b => b.Address)
-            .WithOne(a => a.BloodBank)
-            .HasForeignKey<BloodBank>(b => b.AddressId);
-
-            modelBuilder.Entity<Donor>()
-                .HasOne(d => d.Address)
-                .WithOne(a => a.Donor)
-                .HasForeignKey<Donor>(d => d.AddressId);
-
-            modelBuilder.Entity<BloodBank>()
-                .HasOne(b => b.BloodInventory)
-                .WithOne(i => i.BloodBank)
-                .HasForeignKey<BloodBank>(b => b.BloodInventoryId);
-
-            modelBuilder.Entity<BloodBank>()
-                .HasMany(b => b.Requisitions)
-                .WithOne(r => r.BloodBank)
-                .HasForeignKey(r => r.BloodBankId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<DonationRequisition>()
-                .HasOne(r => r.Donor)
-                .WithMany(d => d.Requisitions)
-                .HasForeignKey(r => r.DonorId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Donor>()
-            .HasOne(d => d.BloodType)
-            .WithOne(b => b.Donor)
-            .HasForeignKey<Donor>(b => b.BloodTypeId);
-
-            modelBuilder.Entity<BloodType>()
-                .HasOne(c => c.BloodInventory)
-                .WithMany(i => i.Components)
-                .HasForeignKey(c => c.BloodInventoryId);
-        }
-        */
     }
 }
