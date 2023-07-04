@@ -56,11 +56,10 @@ namespace BloodDonationManagement.Controllers
                 _context.Add(contact);
                 await _context.SaveChangesAsync();
 
-                // model flag  -> tentar depois
-                //ViewBag.MensagemEnviada = true;
+				TempData["SuccessMessage"] = "Message sent successfully!";
 
-                // redirect to view
-                return RedirectToAction(nameof(Create));
+				// redirect to view
+				return RedirectToAction(nameof(Create));
             }
             return View(contact);
         }
