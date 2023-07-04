@@ -28,18 +28,17 @@ namespace BloodDonationManagement.Repository
 
         public async Task<IEnumerable<BloodBank>> GetAll()
         {
-            return await _context.BloodBanks.Include(i => i.Address).Include(i => i.BloodInventory).ToListAsync();
+            return await _context.BloodBanks.Include(i => i.Address).ToListAsync();
         }
 
         public async Task<BloodBank> GetByIdAsync(int id)
         {
-            return await _context.BloodBanks.Include(i => i.Address).Include(i => i.BloodInventory).FirstOrDefaultAsync(i => i.Id == id);
-            //return await _context.BloodBanks.FirstOrDefaultAsync();
+            return await _context.BloodBanks.Include(i => i.Address).FirstOrDefaultAsync(i => i.Id == id);
         }
 
 		public async Task<BloodBank> GetByIdAsyncNoTracking(int id)
 		{
-			return await _context.BloodBanks.Include(i => i.Address).Include(i => i.BloodInventory).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+			return await _context.BloodBanks.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
 		}
 
 		public bool Save()

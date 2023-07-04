@@ -47,8 +47,17 @@ namespace BloodDonationManagement.Controllers
 					var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
 					if (result.Succeeded)
 					{
-						return RedirectToAction("Index", "BloodBank");
-					}
+                        // Check the user role and redirect accordingly
+                        if (User.IsInRole(UserRoles.Admin))
+                        {
+                            return RedirectToAction("Admin", "Dashboard");
+                        }
+                        else if (User.IsInRole(UserRoles.User))
+                        {
+                            return RedirectToAction("BloodBank", "Dashboard");
+                        }
+                        //return RedirectToAction("Index", "BloodBank");
+                    }
 				}
 				// Password is incorrect
 				TempData["Error"] = "Wrong password! Please try again.";

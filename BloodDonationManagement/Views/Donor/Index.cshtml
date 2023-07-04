@@ -9,7 +9,7 @@
 		<h1>Registered blood donors</h1>
 	</div>
 
-	<table class="table">
+	<table id="donorTable" class="table">
 		<thead>
 			<tr>
 				<th>
@@ -68,3 +68,9 @@
 		</tbody>
 	</table>
 </div>
+
+@section Scripts {
+	<script>
+		let table = new DataTable('#donorTable');
+	</script>
+}

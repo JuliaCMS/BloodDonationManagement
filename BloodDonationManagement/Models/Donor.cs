@@ -25,11 +25,5 @@ namespace BloodDonationManagement.Models
         [ForeignKey("BloodType")]
         public int? BloodTypeId { get; set; }
         public virtual BloodType? BloodType { get; set; }
-
-        [ForeignKey("BloodBankAppUser")]
-        public string? BloodBankAppUserId { get; set; }
-        public virtual AppUser? BloodBankAppUser { get; set; }
-
-        public virtual ICollection<DonationRequisition> Requisitions { get; set; } = new List<DonationRequisition>();
     }
 }

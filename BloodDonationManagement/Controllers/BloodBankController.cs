@@ -85,12 +85,8 @@ namespace BloodDonationManagement.Controllers
 				editBloodBank.Name = bloodBank.Name;
 				editBloodBank.Email = bloodBank.Email;
 				editBloodBank.Telephone = bloodBank.Telephone;
-				editBloodBank.Login = bloodBank.Login;
-				editBloodBank.Password = bloodBank.Password;
 				editBloodBank.AddressId = bloodBank.AddressId;
 				editBloodBank.Address = bloodBank.Address;
-				editBloodBank.BloodInventoryId = bloodBank.BloodInventoryId;
-				editBloodBank.BloodInventory = bloodBank.BloodInventory;
 
 				_bloodBankRepository.Update(editBloodBank);
 				return RedirectToAction("Index");

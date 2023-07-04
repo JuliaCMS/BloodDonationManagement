@@ -1,0 +1,8 @@
+﻿﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@model BloodDonationManagement.ViewModels.DashboardViewModel
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+{
+    <h1>admin</h1>
+}

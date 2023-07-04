@@ -10,12 +10,5 @@ namespace BloodDonationManagement.Models
 
         public string AboRhType { get; set; }
 
-        public string? BloodComponentType { get; set; }
-
-        public int? Quantity { get; set; }
-
-        [ForeignKey("BloodInventory")]
-        public int? BloodInventoryId { get; set; }
-        public virtual BloodInventory? BloodInventory { get; set; }
     }
 }

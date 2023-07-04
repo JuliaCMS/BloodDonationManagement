@@ -15,13 +15,6 @@
 			<input asp-for="FullName" class="form-control" placeholder="Full Name" />
 			<span asp-validation-for="FullName" class="text-danger"></span>
 		</div>
-		<!--
-		<div class="form-outline mb-4">
-			<label asp-for="Cpf" class="control-label">CPF</label>
-			<input asp-for="Cpf" class="form-control" placeholder="CPF" />
-			<span asp-validation-for="FullName" class="text-danger"></span>
-		</div>
-		-->
 		<div class="form-outline mb-4">
 			<label asp-for="DateOfBirth" class="control-label">Date Of Birth</label>
 			<input type="date" asp-for="DateOfBirth" class="form-control" />
@@ -37,13 +30,6 @@
 			<input type="text" data-mdb-input-mask="(00)0000-0000" data-mdb-mask-placeholder="true" asp-for=" Telephone" class="form-control" placeholder="(00)0000-0000" />
 			<span asp-validation-for="Telephone" class="text-danger"></span>
 		</div>
-		<!--
-		<div class="form-outline mb-4">
-			<label asp-for="BiologicalSex" class="control-label">Biological Sex</label>
-			<input asp-for="BiologicalSex" class="form-control" placeholder="woman man" />
-			<span asp-validation-for="BiologicalSex" class="text-danger"></span>
-		</div>
-		-->
 		<div class="form-outline mb-4">
 			<label asp-for="BloodType.AboRhType" class="control-label">Blood Type</label>
 			<select asp-for="BloodType.AboRhType" class="form-control">
@@ -64,10 +50,6 @@
 			<input type="date" asp-for="LastDonation" class="form-control" />
 			<span asp-validation-for="LastDonation" class="text-danger"></span>
 		</div>
-		<!-- Address -->
-		<!--
-			cep
-		-->
 		<div class="form-outline mb-4">
 			<label asp-for="Address.Street" class="control-label">Street</label>
 			<input asp-for="Address.Street" class="form-control" placeholder="Street Example 123" />

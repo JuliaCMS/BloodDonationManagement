@@ -7,9 +7,7 @@ namespace BloodDonationManagement.DataAcessLayer
     public class DBContext : IdentityDbContext<AppUser>
     {
         public DbSet<BloodBank> BloodBanks { get; set; }
-        public DbSet<BloodInventory> BloodInventories { get; set; }
         public DbSet<Donor> Donors { get; set; }
-        public DbSet<DonationRequisition> Requisitions { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<BloodType> BloodTypes { get; set; }
