@@ -49,7 +49,9 @@ namespace BloodDonationManagement.Controllers
             var user = await _userManager.GetUserAsync(User);
 
             _bloodBankRepository.Add(bloodBank);
-            return RedirectToAction("Index", "Donor");
+
+			TempData["SuccessMessage"] = "Blood Bank successfully registered!";
+			return RedirectToAction(nameof(Create));
         }
 
 		// GET: BloodBank/Edit/{id}
