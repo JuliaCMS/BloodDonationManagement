@@ -5,68 +5,69 @@
 }
 
 <div class="container mt-4">
-	<div class="mb-5">
-		<h1>Registered blood donors</h1>
+
+	<div class="card text-white bg-secondary my-5 py-4 text-center">
+		<div class="card-body">
+			<h1 class="display-5 text-white m-0">
+				Registered blood donors
+			</h1>
+		</div>
 	</div>
 
-	<table id="donorTable" class="table">
-		<thead>
-			<tr>
-				<th>
-					<label class="control-label">Full Name</label>
-				</th>
-				<th>
-					<label class="control-label">E-mail</label>
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.Address.Street)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.Address.City)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.Address.State)
-				</th>
-				<th>
-					<label class="control-label">Blood Type</label>
-				</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach (var item in Model)
-			{
+	<div class="p-2 text-center bg-body-secondary rounded">
+		<table id="donorTable" class="table table-striped">
+			<thead class="table-dark">
 				<tr>
-					<td>
-						@Html.DisplayFor(modelItem => item.FullName)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Email)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Address.Street)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Address.City)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Address.State)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.BloodType.AboRhType)
-					</td>
-					<td>
-						<a asp-action="Details" asp-route-id="@item.Id">Donor Details</a>
-						@if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
-						{
-							<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-							<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-						}
-					</td>
+					<th>
+						<label class="control-label">Full Name</label>
+					</th>
+					<th>
+						<label class="control-label">E-mail</label>
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Address.City)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Address.State)
+					</th>
+					<th>
+						<label class="control-label">Blood Type</label>
+					</th>
+					<th></th>
 				</tr>
-			}
-		</tbody>
-	</table>
+			</thead>
+			<tbody class="table-light">
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.FullName)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Email)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Address.City)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Address.State)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.BloodType.AboRhType)
+						</td>
+						<td>
+							<a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Donor Details</a>
+							@if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+							{
+								<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+								<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+							}
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
 </div>
 
 @section Scripts {
