@@ -1,8 +1,57 @@
 ﻿﻿@using Microsoft.AspNetCore.Identity
+﻿@using BloodDonationManagement.ViewModels
 @inject SignInManager<AppUser> SignInManager
 @model BloodDonationManagement.ViewModels.DashboardViewModel
 
+@{
+	ViewData["Title"] = "Admin Dashboard";
+}
+
 @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
 {
-    <h1>admin</h1>
+	<section class="py-5 text-center container">
+		<div class="row py-lg-5">
+			<div class="col-lg-6 col-md-8 mx-auto">
+				<h1 class="display-4 fw-light">Hello!</h1>
+				<span class="fs-3 mb-0">@User.Identity.Name</span>
+				<p class="lead text-body-secondary">
+					Welcome to your dashboard.<br>
+					With the admin roles you can perform all the CRUD operations in our web application.
+				</p>
+				<p class="lead text-body-secondary"></p>
+				<p>
+					<a class="nav-item btn btn-outline-primary mx-2" asp-area="" asp-controller="BloodBank" asp-action="Create">Create my Blood Bank Details</a>
+				</p>
+			</div>
+		</div>
+	</section>
+
+    <div class="p-5 text-center bg-body-tertiary rounded">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <a class="nav-link" asp-area="" asp-controller="Contact" asp-action="Index">
+                        <img src="~/assets/img/admin-dash/messages.jpg" class="card-img-top" alt="Messages">
+                    </a>
+                    <h4 class="my-3">View Received Messages</h4>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <a class="nav-link" asp-area="" asp-controller="Donor" asp-action="Index">
+                        <img src="~/assets/img/bank-dash/registered-donors.jpg" class="card-img-top" alt="Registered donors">
+                    </a>
+                    <h4 class="my-3"><br/>View Registered Donors</h4>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <a class="nav-link" asp-area="" asp-controller="BloodBank" asp-action="Index">
+                        <img src="~/assets/img/admin-dash/hospital2.jpg" class="card-img-top" alt="Registered Blood Banks">
+                    </a>
+                    <h4 class="my-3">View Blood Banks</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 }
