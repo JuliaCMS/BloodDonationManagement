@@ -1,6 +1,6 @@
 # Blood Connect - Blood Donation Management Web Application
 
-Blood Connect is a web application developed as the final project of the 5ª Academia .NET Atos using ASP.NET Core MVC and Entity Framework, designed to facilitate the connection between blood banks and blood donors.
+Blood Connect is a web application developed as the final project of the 5ª .NET Academy at Atos using ASP.NET Core MVC and Entity Framework, designed to facilitate the connection between blood banks and blood donors.
 
 ## Overview
 Blood Connect aims to streamline the process of finding suitable blood donors for blood banks. By registering as a donor on the web application, blood banks can then easily 
