@@ -17,6 +17,7 @@ search for donors based on their specific requirements and contact them for pote
 - Entity Framework: The object-relational mapping (ORM) framework used for data access and database management.
 - SQL Server: The relational database management system (RDBMS) used to store and manage donor and blood bank information.
 - Identity Framework: The authentication and authorization framework used to manage user accounts and access control.
+- Bootstrap: The framework used for styling web pages.
 
 ## Prerequisites
 - .NET Core SDK
