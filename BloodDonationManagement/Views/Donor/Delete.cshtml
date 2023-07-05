@@ -4,13 +4,18 @@
 	ViewData["Title"] = "Delete donor";
 }
 
-<div class="container  mt-5 mb-4">
-	<div class=" text-center">
-		<h2 class="heading mb-4">Are you sure you want to delete this donor?</h2>
-		<hr class="mb-5" />
-	</div>
+@if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+{
+	<div class="container mt-4">
 
-	<div>
+		<div class="card text-white bg-secondary my-5 py-4 text-center">
+			<div class="card-body">
+				<h1 class="display-5 text-white m-0">
+					Are you sure you want to delete this donor?
+				</h1>
+			</div>
+		</div>
+
 		<dl class="row">
 			<dt class="col-sm-2">
 				<label asp-for="FullName" class="control-label">Full Name</label>
@@ -25,18 +30,6 @@
 				@Html.DisplayFor(model => model.DateOfBirth)
 			</dd>
 			<dt class="col-sm-2">
-				<label asp-for="Email" class="control-label">E-mail</label>
-			</dt>
-			<dd class="col-sm-10">
-				@Html.DisplayFor(model => model.Email)
-			</dd>
-			<dt class="col-sm-2">
-				@Html.DisplayNameFor(model => model.Telephone)
-			</dt>
-			<dd class="col-sm-10">
-				@Html.DisplayFor(model => model.Telephone)
-			</dd>
-			<dt class="col-sm-2">
 				<label asp-for="BloodType.AboRhType" class="control-label">Blood Type</label>
 			</dt>
 			<dd class="col-sm-10">
@@ -48,6 +41,20 @@
 			<dd class="col-sm-10">
 				@Html.DisplayFor(model => model.LastDonation)
 			</dd>
+			<hr/>
+			<dt class="col-sm-2">
+				<label asp-for="Email" class="control-label">E-mail</label>
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Email)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Telephone)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Telephone)
+			</dd>
+			<hr />
 			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.Address.Street)
 			</dt>
@@ -67,11 +74,12 @@
 				@Html.DisplayFor(model => model.Address.State)
 			</dd>
 		</dl>
-
+	</div>
+	<div>
 		<form asp-action="Delete" method="post">
 			<input type="hidden" asp-for="Id" />
-			<input type="submit" value="Delete" class="btn btn-danger" /> 
-			<a class="btn btn-outline-secondary"  asp-action="Index">Cancel</a>
+			<input type="submit" value="Delete" class="btn btn-danger" />
+			<a class="btn btn-primary" asp-action="Index">Cancel</a>
 		</form>
 	</div>
-</div>
+}

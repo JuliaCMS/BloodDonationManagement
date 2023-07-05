@@ -4,55 +4,62 @@
 	ViewData["Title"] = "Edit Blood Bank";
 }
 
-<div class="container  mt-5">
-	<div class=" text-center">
-		<h2 class="heading mb-4">
-			Update Blood Bank
-		</h2>
-		<hr class="mb-5" />
+@if (User.Identity.IsAuthenticated)
+{
+	<div class="container  mt-5 mb-4">
+		<div class="card text-white bg-secondary my-5 py-4 text-center">
+			<div class="card-body">
+				<h1 class="display-5 text-white m-0">
+					Update Blood Bank
+				</h1>
+			</div>
+		</div>
+
+		<div class="container  mt-5">
+			<form asp-action="Edit" method="post">
+				<div class="form-outline mb-4">
+					<label asp-for="Name" class="control-label"></label>
+					<input asp-for="Name" class="form-control" placeholder="Blood Bank Name" />
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
+				<div class="form-outline mb-4">
+					<label asp-for="Email" class="control-label">E-mail</label>
+					<input asp-for="Email" class="form-control" placeholder="email@email.com" />
+					<span asp-validation-for="Email" class="text-danger"></span>
+				</div>
+				<div class="form-outline mb-4">
+					<label asp-for="Telephone" class="control-label"></label>
+					<input asp-for="Telephone" class="form-control" placeholder="(00)0000-0000" />
+					<span asp-validation-for="Telephone" class="text-danger"></span>
+				</div>
+				<div class="form-outline mb-4">
+					<label asp-for="Address.Street" class="control-label">Street</label>
+					<input asp-for="Address.Street" class="form-control" placeholder="Street Example 123" />
+					<span asp-validation-for="Address.Street" class="text-danger"></span>
+				</div>
+				<div class="row mb-4">
+					<div class="col">
+						<div class="form-outline">
+							<label asp-for="Address.City" class="control-label">City</label>
+							<input asp-for="Address.City" class="form-control" placeholder="City" />
+							<span asp-validation-for="Address.City" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-outline">
+							<label asp-for="Address.State" class="control-label">State</label>
+							<input asp-for="Address.State" class="form-control" placeholder="State" />
+							<span asp-validation-for="Address.State" class="text-danger"></span>
+						</div>
+					</div>
+				</div>
+				<!-- Submit button -->
+				<input type="submit" value="Save changes" class="btn btn-success" />
+				<a class="btn btn-primary" asp-action="Index">Back to List</a>
+			</form>
+		</div>
 	</div>
-	<form asp-action="Edit" method="post">
-		<div class="form-outline mb-4">
-			<label asp-for="Name" class="control-label"></label>
-			<input asp-for="Name" class="form-control" placeholder="Blood Bank Name" />
-			<span asp-validation-for="Name" class="text-danger"></span>
-		</div>
-		<div class="form-outline mb-4">
-			<label asp-for="Email" class="control-label">E-mail</label>
-			<input asp-for="Email" class="form-control" placeholder="email@email.com" />
-			<span asp-validation-for="Email" class="text-danger"></span>
-		</div>
-		<div class="form-outline mb-4">
-			<label asp-for="Telephone" class="control-label"></label>
-			<input asp-for="Telephone" class="form-control" placeholder="(00)0000-0000" />
-			<span asp-validation-for="Telephone" class="text-danger"></span>
-		</div>
-		<div class="form-outline mb-4">
-			<label asp-for="Address.Street" class="control-label">Street</label>
-			<input asp-for="Address.Street" class="form-control" placeholder="Street Example 123" />
-			<span asp-validation-for="Address.Street" class="text-danger"></span>
-		</div>
-		<div class="row mb-4">
-			<div class="col">
-				<div class="form-outline">
-					<label asp-for="Address.City" class="control-label">City</label>
-					<input asp-for="Address.City" class="form-control" placeholder="City" />
-					<span asp-validation-for="Address.City" class="text-danger"></span>
-				</div>
-			</div>
-			<div class="col">
-				<div class="form-outline">
-					<label asp-for="Address.State" class="control-label">State</label>
-					<input asp-for="Address.State" class="form-control" placeholder="State" />
-					<span asp-validation-for="Address.State" class="text-danger"></span>
-				</div>
-			</div>
-		</div>
-		<!-- Submit button -->
-		<input type="submit" value="Save changes" class="btn btn-primary" />
-		<a asp-action="Index">Back to List</a>
-	</form>
-</div>
+}
 
 
 @section Scripts {
