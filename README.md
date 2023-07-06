@@ -11,6 +11,9 @@ Blood Connect aims to streamline the process of finding suitable blood donors fo
 - CRUD Operations by admin user.
 - Authentication and Authorization: The application utilizes the Identity Framework for user authentication and authorization, ensuring secure access tu user functionalities.
 
+## Next Steps
+- Implement a new feature to send emails to registered donors and respond to received contacts using the SMTP protocol.
+
 ## Technologies Used
 - ASP.NET Core MVC: The web application framework for building the user interface and handling HTTP requests.
 - Entity Framework: The object-relational mapping (ORM) framework used for data access and database management.
