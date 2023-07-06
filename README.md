@@ -1,16 +1,15 @@
 # Blood Connect - Blood Donation Management Web Application
 
-Blood Connect is a web application developed as the final project of the 5ª .NET Academy at Atos using ASP.NET Core MVC and Entity Framework, designed to facilitate the connection between blood banks and blood donors.
+Blood Connect is a web application developed as the final project of the 5ª .NET Academy at Atos/UFN using ASP.NET Core MVC and Entity Framework, designed to facilitate the connection between blood banks and blood donors.
 
 ## Overview
-Blood Connect aims to streamline the process of finding suitable blood donors for blood banks. By registering as a donor on the web application, blood banks can then easily 
-search for donors based on their specific requirements and contact them for potential blood donations.
+Blood Connect aims to streamline the process of finding suitable blood donors for blood banks. By registering as a donor on the web application, authenticated blood banks can easily view these donors and use the filter to find potential blood donors.
 
 ## Key Features
-- User Registration: Donors can create an account and provide their personal information, including blood type and contact details.
-- Donor Search: Blood banks have access to a search feature that allows them to find registered donors based on specific criteria, such as blood type and location.
+- User Registration: Donors and Blood Banks can register on the Web Application and provide their personal information, including blood type (for donors), address and contact details.
+- Donor Search: Blood banks have access to search for registered donors based on specific criteria using the filter.
 - CRUD Operations by admin user.
-- Authentication and Authorization: The application utilizes the Identity Framework for user authentication and authorization, ensuring secure access to donor and blood bank functionalities.
+- Authentication and Authorization: The application utilizes the Identity Framework for user authentication and authorization, ensuring secure access tu user functionalities.
 
 ## Technologies Used
 - ASP.NET Core MVC: The web application framework for building the user interface and handling HTTP requests.
@@ -35,7 +34,7 @@ search for donors based on their specific requirements and contact them for pote
 ## Getting Started
 1. Clone the repository.
 2. Configure the database connection string in the `appsettings.json` file.
-3. Open the solution in Visual Studio or Visual Studio Code.
+3. Open the solution in Visual Studio.
 4. Run the database migrations to create the necessary tables and seed initial data.
 5. Build and run the application.
 
